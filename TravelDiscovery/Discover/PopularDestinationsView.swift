@@ -65,12 +65,20 @@ struct PopularDestinationDetailsView: View {
 
     }
  
+    
+    let imageURLStrings = [
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/2240d474-2237-4cd3-9919-562cd1bb439e",
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/b1642068-5624-41cf-83f1-3f6dff8c1702",
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/6982cc9d-3104-4a54-98d7-45ee5d117531"
+    ]
     var body: some View {
         
         ScrollView {
+         
             
             
-            DestinationHeaderContainer()
+            
+            DestinationHeaderContainer(imageURLStrings:imageURLStrings)
 
 //                .resizable()
 //                .scaledToFill()
