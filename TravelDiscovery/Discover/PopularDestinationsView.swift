@@ -32,7 +32,10 @@ struct PopularDestinationsView: View {
                 HStack(spacing: 8.0) {
                     ForEach(destinations, id: \.self) { destination in
                         NavigationLink(
-                            destination: PopularDestinationDetailsView(destinations: destination),
+                            destination:
+                                NavigationLazyView(
+                                PopularDestinationDetailsView(destinations: destination)),
+                           
                             label: {
                            
                         PopularDestinationTile(destinations: destination)
@@ -48,7 +51,55 @@ struct PopularDestinationsView: View {
     }
 }
 
+struct DestinationDetails: Decodable {
+    let description: String
+    let photos: [String]
+}
+
+class DestinationDetailsViewModel: ObservableObject {
+    
+    @Published var isLoading = true
+    @Published var destinationDetails: DestinationDetails?
+    
+    init(name: String) {
+     
+        // Make a Network call
+        
+     //   let name = "paris"
+        let fixedURLString = "https://travel.letsbuildthatapp.com/travel_discovery/destination?name=\(name.lowercased())"
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        
+        guard let url = URL(string: fixedURLString)
+        else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            
+            // Make sure to check err and resp
+          
+            DispatchQueue.main.async {
+                guard let data = data else { return }
+     
+                
+                do {
+                    
+                    self.destinationDetails = try JSONDecoder().decode(DestinationDetails.self, from: data)
+                    
+                } catch {
+                    
+                    print("Failed to decode JSON", error)
+                }
+            }
+            
+            
+           
+            
+        }.resume()
+    }
+}
+
 struct PopularDestinationDetailsView: View {
+    
+    @ObservedObject var vm: DestinationDetailsViewModel
     
     let destinations: Destination
    
@@ -62,7 +113,7 @@ struct PopularDestinationDetailsView: View {
         self._region = State(initialValue:
                                 MKCoordinateRegion(center: . init(latitude: destinations.latitude, longitude: destinations.longitude), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)))
 
-
+        self.vm = .init(name: destinations.name)
     }
  
     
@@ -75,15 +126,18 @@ struct PopularDestinationDetailsView: View {
         
         ScrollView {
          
+            if let photos = vm.destinationDetails?.photos {
+                DestinationHeaderContainer(imageURLStrings:vm.destinationDetails?.photos ?? [])
+                    .frame(height: 250)
+            }
             
             
-            
-            DestinationHeaderContainer(imageURLStrings:imageURLStrings)
+           
 
 //                .resizable()
 //                .scaledToFill()
                 //This solution might not work depending on the Frame of the text and image that is added
-                .frame(height: 250)
+              
 //                .clipped()
             VStack(alignment: .leading) {
                 Text(destinations.name)
@@ -98,7 +152,7 @@ struct PopularDestinationDetailsView: View {
                     }
                 }.padding(.top, 2)
                 
-                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ")
+                Text(vm.destinationDetails?.description ?? "")
                     .padding(.top, 8)
                     
                 

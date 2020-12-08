@@ -57,14 +57,7 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
     
     
     var allControllers: [UIViewController] = []
-    
-    //    let firstVC = UIHostingController(rootView: Text("First View Controller"))
-    //    let secondVC = UIHostingController(rootView: Text("This is the Second View"))
-    //    let thirdVC = UIHostingController(rootView: Text("Third View controller"))
-    //
-    //    lazy var allControllers: [UIViewController] = [firstVC, secondVC, thirdVC
-    //    ]
-    
+
     
     init(imageURLStrings: [String]) {
         
@@ -87,10 +80,15 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
             
         })
         
-        setViewControllers([allControllers.first!], direction: .forward, animated: true, completion: nil)
-        self.dataSource = self
-        self.delegate = self
-    }
+        if let first = allControllers.first {
+            setViewControllers([first], direction: .forward, animated: true, completion: nil)
+            self.dataSource = self
+            self.delegate = self
+        }
+            
+        }
+        
+      
     
     
     required init?(coder: NSCoder) {
