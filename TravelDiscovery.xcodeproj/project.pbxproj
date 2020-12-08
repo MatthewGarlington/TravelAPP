@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6B12E891257EC392008AACEA /* DestinationHeaderContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B12E890257EC392008AACEA /* DestinationHeaderContainer.swift */; };
 		6B12E897257EC3E6008AACEA /* Attraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B12E896257EC3E6008AACEA /* Attraction.swift */; };
+		6B12E89E257F057D008AACEA /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B12E89D257F057D008AACEA /* RestaurantDetailsView.swift */; };
 		6B223812257AC92F007AD921 /* TravelDiscoveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B223811257AC92F007AD921 /* TravelDiscoveryApp.swift */; };
 		6B223814257AC92F007AD921 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B223813257AC92F007AD921 /* DiscoverView.swift */; };
 		6B223816257AC937007AD921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B223815257AC937007AD921 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		6B12E890257EC392008AACEA /* DestinationHeaderContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationHeaderContainer.swift; sourceTree = "<group>"; };
 		6B12E896257EC3E6008AACEA /* Attraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attraction.swift; sourceTree = "<group>"; };
+		6B12E89D257F057D008AACEA /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
 		6B22380E257AC92F007AD921 /* TravelDiscovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelDiscovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B223811257AC92F007AD921 /* TravelDiscoveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDiscoveryApp.swift; sourceTree = "<group>"; };
 		6B223813257AC92F007AD921 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 				6B12E890257EC392008AACEA /* DestinationHeaderContainer.swift */,
 			);
 			path = Destination;
+			sourceTree = "<group>";
+		};
+		6B12E89C257F0566008AACEA /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				6B12E89D257F057D008AACEA /* RestaurantDetailsView.swift */,
+			);
+			path = Restaurant;
 			sourceTree = "<group>";
 		};
 		6B223805257AC92F007AD921 = {
@@ -204,6 +214,7 @@
 		6BDDB0A5257B267100E120C6 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				6B12E89C257F0566008AACEA /* Restaurant */,
 				6B12E88B257EC313008AACEA /* Destination */,
 				6B41E8FC257C08D6001EA82A /* Category */,
 				6B223813257AC92F007AD921 /* DiscoverView.swift */,
@@ -389,6 +400,7 @@
 				6BDDB0CF257B29CE00E120C6 /* User.swift in Sources */,
 				6B41E914257C2015001EA82A /* NavigationLazyView.swift in Sources */,
 				6B223812257AC92F007AD921 /* TravelDiscoveryApp.swift in Sources */,
+				6B12E89E257F057D008AACEA /* RestaurantDetailsView.swift in Sources */,
 				6B12E891257EC392008AACEA /* DestinationHeaderContainer.swift in Sources */,
 				6BDDB0E2257B2DB700E120C6 /* TileModifer.swift in Sources */,
 				6B41E8F9257C0811001EA82A /* CategoriesDetailsView.swift in Sources */,
