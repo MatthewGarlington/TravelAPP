@@ -127,8 +127,8 @@ struct PopularDestinationDetailsView: View {
         ScrollView {
          
             if let photos = vm.destinationDetails?.photos {
-                DestinationHeaderContainer(imageURLStrings:vm.destinationDetails?.photos ?? [])
-                    .frame(height: 250)
+                DestinationHeaderContainer(imageURLStrings: photos)
+                   .frame(height: 350)
             }
             
             
