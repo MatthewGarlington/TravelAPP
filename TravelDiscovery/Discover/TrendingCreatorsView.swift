@@ -9,9 +9,9 @@ import SwiftUI
 
 struct TrendingCreatorsView: View {
     let users: [User] = [
-        .init(name: "Amy Adams", imageName: "amy"),
-        .init(name: "Billy", imageName: "billy"),
-        .init(name: "Sam Smith", imageName: "sam"),
+        .init(id: 0, name: "Amy Adams", imageName: "amy"),
+        .init(id: 1, name: "Billy", imageName: "billy"),
+        .init(id: 2, name: "Sam Smith", imageName: "sam"),
     ]
     
     var body: some View {
@@ -28,32 +28,47 @@ struct TrendingCreatorsView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 12) {
                     ForEach(users, id: \.self){user in
-                        VStack {
-                            Image(user.imageName)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 50, height: 50)
-                                .cornerRadius(60)
-                               
-                            Text(user.name)
-                                .font(.system(size: 11, weight: .semibold))
-                                .multilineTextAlignment(.center)
-                        }
-                          
-                         .frame(width: 60)
-                         .shadow(color: .gray, radius: 4, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 2)
-                         .padding(.bottom)
+                        NavigationLink(
+                            destination: NavigationLazyView(UserDetailsView(user: user)),
+                            label: {
+                                DiscoverUserView(user: user)
+                            })
+                    
+                      
                     }
                 
             }.padding(.horizontal)
+                .padding(.bottom)
         }
     }
 }
 }
 
+struct DiscoverUserView: View {
+    let user: User
+   
+    var body: some View {
+        VStack {
+            Image(user.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 50, height: 50)
+                .cornerRadius(60)
+               
+            Text(user.name)
+                .font(.system(size: 11, weight: .semibold))
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color(.label))
+        }
+          
+         .frame(width: 60)
+         .shadow(color: .gray, radius: 4, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 2)
+    }
+    
+}
+
 struct TrendingCreatorsView_Previews: PreviewProvider {
     static var previews: some View {
-        TrendingCreatorsView()
         DiscoverView()
     }
 }
